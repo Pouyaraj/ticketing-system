@@ -1,0 +1,40 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    background-color: #292525;
+    align-items: center;
+    padding: 70px;
+    border-radius: 10px;
+    width: 450px;
+}
+
+.register-username,
+.register-password,
+.first-name,
+.last-name {
+    font-weight: bold;
+    color: white;
+}
+
+.error {
+    margin-bottom: 15px;
+    padding: 10px;
+    color: #fa0606;
+    font-size: 16px;
+}
+
+.success {
+    margin-bottom: 15px;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 16px;
+}
