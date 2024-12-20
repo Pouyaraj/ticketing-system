@@ -73,11 +73,7 @@ public class TicketController {
         } catch (IllegalArgumentException e) {
             
             return ResponseEntity.status(400).body(Map.of("message", e.getMessage()));
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(Map.of("message", "Error: " + e.getMessage()));
         }
     }
     
-    
-
 }

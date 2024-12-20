@@ -73,11 +73,7 @@ public class TicketService {
         return ticketRepository.save(ticket);
     }
 
-    public TicketEntity getTicketById(Integer id) {
-        return ticketRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Ticket not found with ID: " + id));
-    }
-    
+
 }
 
 
