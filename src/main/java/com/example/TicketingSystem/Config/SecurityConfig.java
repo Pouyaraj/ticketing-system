@@ -13,7 +13,9 @@ public class SecurityConfig {
         http
             .csrf().disable() 
             .authorizeRequests()
-                .requestMatchers("/register", "/login", "/tickets/submit", "/tickets/get-tickets").permitAll() // Allow unauthenticated access to these endpoints
+                .requestMatchers("/register", "/login", "/tickets/submit", "/tickets/get-tickets", "/tickets/pending")
+                .permitAll() // Allow unauthenticated access to these endpoints
+                .requestMatchers("/tickets/process/**").hasRole("Manager") // Restrict /process endpoint to managers only
                 .anyRequest().authenticated() // Require authentication for all other endpoints
             .and()
             .httpBasic(); 
@@ -21,4 +23,5 @@ public class SecurityConfig {
         return http.build();
     }
 }
+
 

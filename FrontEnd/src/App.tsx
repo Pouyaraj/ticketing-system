@@ -7,8 +7,8 @@ import RegisterFile from './Component/Register/RegisterFile';
 import LoginForm from './Component/Login/LoginForm';
 import EmployeeAccountFile from './Component/EmployeeAccount/EmployeeAccountFile';
 import CreateTicketsFile from './Component/CreateTickets/CreateTicketsFile';
-import ViewTicketsFile from './Component/ViewTickets/ViewTicketsFile';
 import ManagerAccount from './Component/ManagerAccount/ManagerAccount';
+import ViewTicketsFile from './Component/ViewTickets/ViewTicketsFile';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         <Route path='/login' element={<LoginForm/>}></Route>
         <Route path='/employee-account' element={<EmployeeAccountFile/>}></Route>
         <Route path='/create-ticket' element={<CreateTicketsFile/>}></Route>
-        <Route path='/view-ticket' element={<ViewTicketsFile/>}></Route>
+        <Route path='/employee-view-ticket' element={<ViewTicketsFile/>}></Route>
         <Route path='/manager-account' element={<ManagerAccount/>}></Route>
       </Routes>
     </div>

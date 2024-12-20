@@ -32,11 +32,14 @@ public class AccountEntity {
 
     public AccountEntity() {}
 
-    public AccountEntity(String username, String password) {
+    public AccountEntity(String username, String password, String firstName, String lastName) {
         this.username = username;
         this.password = password;
-        this.role = "Employee"; 
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = "Employee";  // Set default role as Employee
     }
+    
 
     // Getters and Setters
     public Integer getId() {

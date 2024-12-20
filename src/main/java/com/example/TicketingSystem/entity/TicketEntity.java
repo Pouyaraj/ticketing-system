@@ -21,7 +21,7 @@ public class TicketEntity {
     private String description;
 
     @Column(name = "status", nullable = false)
-    private String status = "Pending";
+    private String status;
 
     public TicketEntity() {}
 

@@ -13,7 +13,7 @@ function CreateTicketsFile() {
     const ticketData = {
       amount: parseFloat(amount),
       description: description,
-      status: "Pending",
+      //status: "Pending",
     };
 
     if(!ticketData.amount || !ticketData.description){
