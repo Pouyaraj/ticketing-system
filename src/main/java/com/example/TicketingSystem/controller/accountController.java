@@ -33,7 +33,7 @@ public class accountController {
         }
     
         try {
-            // Call the service to register the user
+
             AccountEntity savedUser = accountService.register(user);
             return ResponseEntity.ok(savedUser);
         } catch (IllegalArgumentException e) {

@@ -22,8 +22,8 @@ public class TicketService {
     /**
      * Submit a new ticket.
      *
-     * @param ticket The ticket data to be submitted.
-     * @return The saved ticket.
+     * @param ticket
+     * @return
      */
     public TicketEntity submit(TicketEntity ticket) {
         // Set default status to "Pending"
@@ -34,27 +34,27 @@ public class TicketService {
     /**
      * Retrieve all tickets.
      *
-     * @return List of all tickets.
+     * @return 
      */
     public List<TicketEntity> getTickets() {
         return ticketRepository.findAll();
     }
 
     /**
-     * Retrieve all tickets with a "Pending" status.
+     * Retrieve all pending tickets.
      *
-     * @return List of pending tickets.
+     * @return 
      */
     public List<TicketEntity> getPendingTickets() {
         return ticketRepository.findByStatus("Pending");
     }
 
     /**
-     * Process a ticket by approving or denying it.
+     * Process a ticket by approving or denying.
      *
-     * @param ticketId The ID of the ticket to be processed.
-     * @param status   The new status ("Approved" or "Denied").
-     * @return The updated ticket entity.
+     * @param ticketId
+     * @param status   
+     * @return 
      */
     public TicketEntity processTicket(Integer ticketId, String status) {
         Optional<TicketEntity> ticketOptional = ticketRepository.findById(ticketId);
@@ -65,12 +65,10 @@ public class TicketService {
 
         TicketEntity ticket = ticketOptional.get();
 
-        // Ensure the ticket is still pending before processing
         if (!"Pending".equals(ticket.getStatus())) {
             throw new IllegalArgumentException("Ticket has already been processed and cannot be updated.");
         }
 
-        // Update the status and save the ticket
         ticket.setStatus(status);
         return ticketRepository.save(ticket);
     }

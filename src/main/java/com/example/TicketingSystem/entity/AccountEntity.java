@@ -37,7 +37,7 @@ public class AccountEntity {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.role = "Employee";  // Set default role as Employee
+        this.role = "Employee";
     }
     
 

@@ -1,0 +1,12 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+TicketingSystem,com.example.TicketingSystem.controller,accountController,0,82,7,13,0,18,7,6,0,3
+TicketingSystem,com.example.TicketingSystem.controller,TicketController,62,44,6,6,14,12,4,7,1,4
+TicketingSystem,com.example.TicketingSystem.Config,WebConfig.new WebMvcConfigurer() {...},0,54,0,0,0,7,0,2,0,2
+TicketingSystem,com.example.TicketingSystem.Config,SecurityConfig,0,54,0,0,0,11,0,2,0,2
+TicketingSystem,com.example.TicketingSystem.Config,WebConfig,0,8,0,0,0,2,0,2,0,2
+TicketingSystem,com.example.TicketingSystem.entity,TicketEntity,4,39,0,0,2,16,1,9,1,9
+TicketingSystem,com.example.TicketingSystem.entity,AccountEntity,4,65,0,0,2,25,1,13,1,13
+TicketingSystem,com.example.TicketingSystem,DataInitializer,0,39,0,2,0,13,0,3,0,2
+TicketingSystem,com.example.TicketingSystem,TicketingSystemApplication,5,3,0,0,2,1,1,1,1,1
+TicketingSystem,com.example.TicketingSystem.service,AccountService,3,63,2,8,1,13,2,6,0,3
+TicketingSystem,com.example.TicketingSystem.service,TicketService,37,24,4,0,8,7,3,4,1,4

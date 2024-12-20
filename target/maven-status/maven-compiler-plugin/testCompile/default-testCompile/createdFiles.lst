@@ -3,6 +3,5 @@ com/example/TicketingSystem/GetPendingTicketsTest.class
 com/example/TicketingSystem/WithMockUser.class
 com/example/TicketingSystem/SubmitTicketTest.class
 com/example/TicketingSystem/UserLoginTest.class
-com/example/TicketingSystem/ProcessTicketTest.class
 com/example/TicketingSystem/UserRegisterTest.class
 com/example/TicketingSystem/TicketingSystemApplicationTests.class

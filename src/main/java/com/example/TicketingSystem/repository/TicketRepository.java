@@ -11,8 +11,8 @@ public interface TicketRepository extends JpaRepository<TicketEntity, Integer> {
     /**
      * Find all tickets by status.
      *
-     * @param status The status of the tickets to retrieve (e.g., "Pending").
-     * @return A list of tickets with the specified status.
+     * @param status 
+     * @return 
      */
     List<TicketEntity> findByStatus(String status);
 }

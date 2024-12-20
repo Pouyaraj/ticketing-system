@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TicketService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TicketingSystem</a> &gt; <a href="index.source.html" class="el_package">com.example.TicketingSystem.service</a> &gt; <span class="el_source">TicketService.java</span></div><h1>TicketService.java</h1><pre class="source lang-java linenums">package com.example.TicketingSystem.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.TicketingSystem.entity.TicketEntity;
+import com.example.TicketingSystem.repository.TicketRepository;
+
+@Service
+public class TicketService {
+
+    private final TicketRepository ticketRepository;
+
+    @Autowired
+<span class="fc" id="L18">    public TicketService(TicketRepository ticketRepository) {</span>
+<span class="fc" id="L19">        this.ticketRepository = ticketRepository;</span>
+<span class="fc" id="L20">    }</span>
+
+    /**
+     * Submit a new ticket.
+     *
+     * @param ticket
+     * @return
+     */
+    public TicketEntity submit(TicketEntity ticket) {
+        // Set default status to &quot;Pending&quot;
+<span class="fc" id="L30">        ticket.setStatus(&quot;Pending&quot;);</span>
+<span class="fc" id="L31">        return ticketRepository.save(ticket);</span>
+    }
+
+    /**
+     * Retrieve all tickets.
+     *
+     * @return 
+     */
+    public List&lt;TicketEntity&gt; getTickets() {
+<span class="fc" id="L40">        return ticketRepository.findAll();</span>
+    }
+
+    /**
+     * Retrieve all pending tickets.
+     *
+     * @return 
+     */
+    public List&lt;TicketEntity&gt; getPendingTickets() {
+<span class="fc" id="L49">        return ticketRepository.findByStatus(&quot;Pending&quot;);</span>
+    }
+
+    /**
+     * Process a ticket by approving or denying.
+     *
+     * @param ticketId
+     * @param status   
+     * @return 
+     */
+    public TicketEntity processTicket(Integer ticketId, String status) {
+<span class="nc" id="L60">        Optional&lt;TicketEntity&gt; ticketOptional = ticketRepository.findById(ticketId);</span>
+
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (ticketOptional.isEmpty()) {</span>
+<span class="nc" id="L63">            throw new IllegalArgumentException(&quot;Ticket not found with ID: &quot; + ticketId);</span>
+        }
+
+<span class="nc" id="L66">        TicketEntity ticket = ticketOptional.get();</span>
+
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        if (!&quot;Pending&quot;.equals(ticket.getStatus())) {</span>
+<span class="nc" id="L69">            throw new IllegalArgumentException(&quot;Ticket has already been processed and cannot be updated.&quot;);</span>
+        }
+
+<span class="nc" id="L72">        ticket.setStatus(status);</span>
+<span class="nc" id="L73">        return ticketRepository.save(ticket);</span>
+    }
+}
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

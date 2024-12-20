@@ -25,7 +25,7 @@ public class AccountService {
     public AccountEntity register(AccountEntity user) {
         AccountEntity existingAccount = usertRepository.findByUsername(user.getUsername());
 
-        // If the user exists, throw an exception to prevent registration
+       
         if (existingAccount != null) {
             throw new IllegalArgumentException("Username already exists. Please choose a different username.");
         }
@@ -34,12 +34,12 @@ public class AccountService {
             user.setRole("Employee");
         }
 
-        // Save the new user
+        
         return usertRepository.save(user);
     }
 
     public AccountEntity login(AccountEntity user) {
-        // Find user by username
+       
         Optional<AccountEntity> existingUser = Optional.ofNullable(usertRepository.findByUsername(user.getUsername()));
 
         if (existingUser.isPresent() && existingUser.get().getPassword().equals(user.getPassword())) {

@@ -51,7 +51,7 @@ public class TicketController {
         return ResponseEntity.ok(tickets);
     }
 
-    // Endpoint to retrieve all pending tickets
+    // Endpoint to retrieve pending tickets
     @GetMapping("/pending")
     public ResponseEntity<List<TicketEntity>> getPendingTickets() {
         try {
@@ -62,27 +62,27 @@ public class TicketController {
         }
     }
 
-// Endpoint for managers to process a ticket (approve/deny)
-@PatchMapping("/process/{id}")
-public ResponseEntity<?> processTicket(@PathVariable Integer id, @RequestBody TicketEntity ticket) {
-    if (ticket.getStatus() == null) {
-        return ResponseEntity.status(400).body("Status is required.");
-    }
+// Endpoint to approve or deny a ticket
+    @PatchMapping("/process/{id}")
+    public ResponseEntity<?> processTicket(@PathVariable Integer id, @RequestBody TicketEntity ticket) {
+        if (ticket.getStatus() == null) {
+            return ResponseEntity.status(400).body("Status is required.");
+        }
 
-    // Check if the ticket has already been processed (approved or denied)
-    if (ticket.getStatus().equalsIgnoreCase("Approved") || ticket.getStatus().equalsIgnoreCase("Denied")) {
-        return ResponseEntity.status(400).body("Ticket has already been processed.");
-    }
+        // Check if the ticket has already been processed (approved or denied)
+        if (ticket.getStatus().equalsIgnoreCase("Approved") || ticket.getStatus().equalsIgnoreCase("Denied")) {
+            return ResponseEntity.status(400).body("Ticket has already been processed.");
+        }
 
-    try {
-        // Use the path variable ID and the status from the body
-        TicketEntity updatedTicket = ticketService.processTicket(id, ticket.getStatus());
-        return ResponseEntity.ok(updatedTicket);
-    } catch (IllegalArgumentException e) {
-        return ResponseEntity.status(400).body(e.getMessage());
-    } catch (Exception e) {
-        return ResponseEntity.status(500).body("Error: " + e.getMessage());
+        try {
+
+            TicketEntity updatedTicket = ticketService.processTicket(id, ticket.getStatus());
+            return ResponseEntity.ok(updatedTicket);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error: " + e.getMessage());
+        }
     }
-}
 
 }
