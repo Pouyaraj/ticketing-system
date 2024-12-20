@@ -15,7 +15,7 @@ public class SecurityConfig {
             .authorizeRequests()
                 .requestMatchers("/register", "/login", "/tickets/submit", "/tickets/get-tickets", "/tickets/pending")
                 .permitAll() // Allow unauthenticated access to these endpoints
-                .requestMatchers("/tickets/process/**").hasRole("Manager") // Restrict /process endpoint to managers only
+                .requestMatchers("/tickets/process/**").permitAll() // Allow access to /process endpoint for everyone
                 .anyRequest().authenticated() // Require authentication for all other endpoints
             .and()
             .httpBasic(); 
@@ -23,5 +23,6 @@ public class SecurityConfig {
         return http.build();
     }
 }
+
 
 

@@ -1,6 +1,7 @@
 package com.example.TicketingSystem.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -62,27 +63,21 @@ public class TicketController {
         }
     }
 
-// Endpoint to approve or deny a ticket
     @PatchMapping("/process/{id}")
     public ResponseEntity<?> processTicket(@PathVariable Integer id, @RequestBody TicketEntity ticket) {
-        if (ticket.getStatus() == null) {
-            return ResponseEntity.status(400).body("Status is required.");
-        }
-
-        // Check if the ticket has already been processed (approved or denied)
-        if (ticket.getStatus().equalsIgnoreCase("Approved") || ticket.getStatus().equalsIgnoreCase("Denied")) {
-            return ResponseEntity.status(400).body("Ticket has already been processed.");
-        }
-
         try {
-
+            // Fetch and process the ticket
             TicketEntity updatedTicket = ticketService.processTicket(id, ticket.getStatus());
             return ResponseEntity.ok(updatedTicket);
+    
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(400).body(e.getMessage());
+            
+            return ResponseEntity.status(400).body(Map.of("message", e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Error: " + e.getMessage());
+            return ResponseEntity.status(500).body(Map.of("message", "Error: " + e.getMessage()));
         }
     }
+    
+    
 
 }
